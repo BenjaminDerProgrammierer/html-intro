@@ -1,11 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hello World!</title>
+
+    <!-- External Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Internal Stylesheet -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+    </style>
+
+    <!-- External Script -->
+    <!-- defer will ensure the script is executed after the document has been parsed -->
+    <script src="script.js" defer></script>
 </head>
+
 <body>
-    
+    <!-- Inline styles -->
+    <h1 id="main-title" style="font-size: 3rem; text-align: center;"></h1>
+
+    <!-- Internal Script -->
+     <!-- Do NOT use this after the HELLO WORLD exercise -->
+    <script>
+        // NEVER use alerts, prompts, or confirms in real projects
+        // alert('Hello, World!');
+        // let userName = prompt('What is your name?');
+        // let isAdult = confirm('Are you an adult?');
+
+        // Errors
+        // allert(Hello World!); // Uncaught ReferenceError: allert is not defined
+
+        let myFirstMessage = 'Hello';
+        let mySecondMessage = 'world';
+        console.log(myFirstMessage);
+
+        // Insert variables into h1 tag
+        let titleElement = document.getElementById('main-title');
+        titleElement.textContent = `${myFirstMessage} ${mySecondMessage}!`;
+
+        // Create new div element
+        let newDiv = document.createElement('div');
+        newDiv.textContent = 'This is a new div element created with JavaScript.';
+        document.body.appendChild(newDiv);
+
+        // Style the new div element
+        newDiv.style.backgroundColor = '#4CAF50';
+
+        // Don't do this:
+        // newDiv.style = 'background-color: #4CAF50;';
+
+        // Style the body
+        document.body.style.margin = '0';
+
+        // Any data types
+        // let age = 10;
+        // let triggered = false;
+        // let price = 10.99;
+
+        let temperature = 25; // Degree Celsius
+
+        if (temperature > 30) {
+            console.log('It is hot outside.');
+        } else if (temperature >= 20 && temperature <= 30) {
+            console.log('The weather is nice.');
+        } else {
+            console.log('It is cold outside.');
+        }
+
+    </script>
 </body>
+
 </html>
