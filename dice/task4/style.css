@@ -38,6 +38,7 @@ body {
     background-color: #ddd;
     padding: 10px;
     border-radius: 5px;
+    width: 200px;
 
     gap: 10px;
 }
