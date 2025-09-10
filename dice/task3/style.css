@@ -27,6 +27,8 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
     flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
 
     & > img {
         height: 80px;
