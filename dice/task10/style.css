@@ -1,0 +1,95 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.actions {
+    background-color: #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & > button {
+        margin-right: 10px;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #0056b3;
+        }
+
+        &:disabled {
+            background-color: #aaa;
+            cursor: not-allowed;
+        }
+    }
+}
+
+#result {
+    height: max(100px, fit-content);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+
+    & > img {
+        height: 80px;
+    }
+
+    & .twoDice .highlight {
+        border: 2px solid green;
+        border-radius: 5px;
+    }
+}
+
+.finalScore {
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+
+    & .highlight {
+        font-weight: bold;
+        color: green;
+    }
+}
+
+.twoDice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    width: 200px;
+
+    gap: 10px;
+}
