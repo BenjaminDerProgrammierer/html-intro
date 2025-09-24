@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dice</title>
+
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="header">
+        <img src="../assets/dices.svg" alt="Dice Icon">
+        <h1>Dice Roller</h1>
+    </div>
+    <div class="settings">
+        <p>Set player names before rolling the dices.</p>
+        <div class="input">
+            <label for="player1Name">Player 1 Name:</label>
+            <input type="text" id="player1Name" name="player1Name" value="Player 1">
+        </div>
+        <div class="input">
+            <label for="player2Name">Player 2 Name:</label>
+            <input type="text" id="player2Name" name="player2Name" value="Player 2">
+        </div>
+        <div class="input">
+            <label for="diceColor">Dice Color:</label>
+            <input type="color" id="diceColor" name="diceColor" value="#000000">
+        </div>
+    </div>
+    <div class="actions">
+        <button id="rollPlayer1">Roll <span class="player1Name">Player 1</span></button>
+        <button id="rollPlayer2">Roll <span class="player2Name">Player 2</span></button>
+    </div>
+    <div id="result"></div>
+
+</body>
+
+</html>
