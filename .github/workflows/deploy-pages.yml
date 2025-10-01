@@ -24,6 +24,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v5
 
+      - name: Generate index.html
+        run: |
+          chmod +x build-index.sh
+          ./build-index.sh
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
