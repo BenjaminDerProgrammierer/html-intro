@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Task 2</title>
+</head>
+<body>
+    <h1>Async Task 2</h1>
+    <p>This page will display Step 1, shortly after Step 4, then Step 3, and finally Step 2.</p>
+    <p>This happens asynchronously.</p>
+    <div id="box"></div>
+
+    <script>
+        const box = document.querySelector('#box');
+
+        // 1
+        box.innerHTML += 'Step 1<br>';
+        console.log('Step 1');
+
+        // 2
+        setTimeout(() => {
+            box.innerHTML += 'Step 2<br>';
+            console.log('Step 2');
+        }, 1000);
+
+        // 3
+        setTimeout(() => {
+            box.innerHTML += 'Step 3<br>';
+            console.log('Step 3');
+        }, 500);
+
+        // 4
+        setTimeout(() => {
+            box.innerHTML += 'Step 4<br>';
+            console.log('Step 4');
+        }, 25);
+
+        // 5
+        box.innerHTML += 'Step 5<br>';
+        console.log('Step 5');
+    </script>
+</body>
+</html>

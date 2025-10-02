@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Task 5</title>
+</head>
+<body>
+    <h1>Async Task 5</h1>
+    <p>async counter</p>
+    <p>This program runs an asynchronous counter.</p>
+    <div id="box"></div>
+
+    <script>
+        const box = document.querySelector('#box');
+
+        let count = 0;
+
+        function updateCounter() {
+            box.innerHTML += `Counter: ${count}<br>`;
+            count++;
+        }
+
+        for (let i = 1; i <= 60; i++) {
+            setTimeout(updateCounter, i * 1000);
+            
+        }
+    </script>
+</body>
+</html>

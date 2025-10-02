@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Task 4</title>
+</head>
+<body>
+    <h1>Async Task 4</h1>
+    <p>Non-Blocking Program</p>
+    <p>This program demonstrates a non-blocking operation in JavaScript.</p>
+    <div id="box"></div>
+
+    <script>
+        const box = document.querySelector('#box');
+
+        // 1
+        function step1() {
+            box.innerHTML += 'Step 1<br>';
+            console.log('Step 1');
+        }
+
+        // 2 - Very intensive task
+        function step2() {
+            for (let i = 0; i < 5000; i++) {
+                box.innerHTML += `Step 2 - ${i}<br>`;
+                console.log(`Step 2 - ${i}`);
+            }
+        }
+
+        // 3
+        function step3() {
+            box.innerHTML += 'Step 3<br>';
+            console.log('Step 3');
+        }
+
+        step1();
+        setTimeout(step2, 0); // Schedule step2 to run after the current call stack is clear
+        step3();
+    </script>
+</body>
+</html>

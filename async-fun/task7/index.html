@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async Task 7</title>
+</head>
+<body>
+    <h1>Async Task 7</h1>
+    <p>A second tick-tack timer</p>
+    <div id="box"></div>
+
+    <script>
+        const box = document.querySelector('#box');
+
+        let isTick = true;
+
+        function tick() {
+            box.innerHTML += `<span style="color: blue;">Tick</span><br>`;
+            randomBackgroundColor();
+        }
+
+        function tack() {
+            box.innerHTML += `<span style="color: red;">Tack</span><br>`;
+            randomBackgroundColor();
+        }
+
+        function randomBackgroundColor() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random() * 256);
+            const randomColor = `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+            document.body.style.backgroundColor = randomColor;
+        }
+
+        
+
+        let tickTimer = setInterval(tick, 2000);
+        let tackTimer = setInterval(tack, 2000, 1000);
+
+        setTimeout(() => {
+            clearInterval(timer);
+        }, 120000);
+    </script>
+</body>
+</html>
