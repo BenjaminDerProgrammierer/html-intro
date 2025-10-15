@@ -110,7 +110,7 @@ function updateTask() {
         userInput.disabled = true;
         sendButton.disabled = true;
         profile.nameElement.textContent = answers[1];
-        profile.container.backgroundColor = answers[2];
+        profile.container.style.backgroundColor = answers[2];
         profile.occupationElement.textContent = answers[3];
         profile.emailElement.textContent = answers[4];
         profile.container.style.display = "block";
