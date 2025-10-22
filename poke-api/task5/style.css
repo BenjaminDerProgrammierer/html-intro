@@ -1,0 +1,41 @@
+:root {
+    --foreground-color: #ffffff;
+    --background-color: #1d1d1d;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--foreground-color);
+    padding: 20px;
+}
+
+
+#pokemon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pokemon {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
