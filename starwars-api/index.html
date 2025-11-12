@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Wars API</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>@</h1>
+        <h1>+ApI+</h1>
+    </header>
+
+    <div class="container">
+        <form class="tabs">
+            <input type="radio" name="tab" id="people-tab" checked>
+            <label for="people-tab">People</label>
+            <input type="radio" name="tab" id="planets-tab">
+            <label for="planets-tab">Planets</label>
+            <input type="radio" name="tab" id="starships-tab">
+            <label for="starships-tab">Starships</label>
+        </form>
+        <div class="page">
+            <section id="people">
+                <h2>People</h2>
+            </section>
+            <section id="planets">
+                <h2>Planets</h2>
+            </section>
+            <section id="starships">
+                <h2>Starships</h2>
+            </section>
+        </div>
+        <div class="footer">
+            <p>Data provided by <a href="https://swapi.dev/" target="_blank" rel="noopener noreferrer">SWAPI - The Star
+                    Wars API</a></p>
+        </div>
+    </div>
+
+    <script>
+        // Tab Switching
+        const tabs = document.querySelectorAll('.tabs input[type="radio"]');
+        const sections = document.querySelectorAll('.page section');
+
+        for (const tab of tabs) {
+            tab.addEventListener('change', () => {
+                for (const section of sections) {
+                    section.style.display = 'none';
+                }
+
+                if (document.getElementById('people-tab').checked) {
+                    document.getElementById('people').style.display = 'block';
+                    fetchPeople();
+                } else if (document.getElementById('planets-tab').checked) {
+                    document.getElementById('planets').style.display = 'block';
+                    fetchPlanets();
+                } else if (document.getElementById('starships-tab').checked) {
+                    document.getElementById('starships').style.display = 'block';
+                    fetchStarships();
+                }
+            });
+        };
+
+        for (const section of sections) {
+            section.style.display = 'none';
+        }
+
+        document.getElementById('people').style.display = 'block';
+        fetchPeople();
+        document.getElementById('people-tab').checked = true;
+
+        // Fetch Functions
+        async function fetchPeople() {
+            document.getElementById('people').innerHTML = '<h2>People</h2>';
+            const peopleCount = await fetch('https://swapi.dev/api/people/')
+                .then(response => response.json())
+                .then(data => {
+                    return data.count;
+                });
+
+            let min = Math.min(peopleCount, 5);
+            for (let i = 1; i <= min; i++) {
+                const person = await fetch(`https://swapi.dev/api/people/${i}/`)
+                    .then(response => {
+                        if (response.status === 404) {
+                            min++;
+                            return null;
+                        }
+                        return response;
+                    })
+                    .then(response => response.json())
+                    .catch(() => null);
+
+                if (person) {
+                    const personDiv = document.createElement('div');
+                    personDiv.innerHTML = `
+                        <h3><img src="${person.gender == 'male' ? 'assets/mars.svg' : 'assets/venus.svg'}" alt="${person.name}"> ${person.name}</h3>
+                        <p><strong>Eye Color:</strong> ${person.eye_color}</p>
+                        <p><strong>Height:</strong> ${person.height} cm</p>
+                        <div class="homeworld"></div>
+                        <div class="starships"></div>
+                    `;
+                    document.getElementById('people').appendChild(personDiv);
+
+                    // Fetch Homeworld
+                    const homeworldDiv = personDiv.querySelector('.homeworld');
+                    const homeworld = await fetch(person.homeworld)
+                        .then(response => response.json())
+                        .then(data => data.name);
+                    homeworldDiv.innerHTML = `<p><strong>Homeworld:</strong> ${homeworld}</p>`;
+
+                    // Fetch Starships
+                    const starshipsDiv = personDiv.querySelector('.starships');
+                    if (person.starships.length > 0) {
+                        starshipsDiv.innerHTML = `<p><strong>Starships:</strong> ${
+                            // Ja, ich verstehe das folgende.
+                            (await Promise.all(person.starships.map(async (url) => {
+                                const response = await fetch(url);
+                                const data = await response.json();
+                                return data.name;
+                            }))).join(', ')
+                            }</p>`;
+                    } else {
+                        starshipsDiv.innerHTML = `<p><strong>Starships:</strong> None</p>`;
+                    }
+
+                }
+            }
+        }
+
+        async function fetchPlanets() {
+            document.getElementById('planets').innerHTML = '<h2>Planets</h2>';
+            const planetsCount = await fetch('https://swapi.dev/api/planets/')
+                .then(response => response.json())
+                .then(data => {
+                    return data.count;
+                });
+
+            let min = Math.min(planetsCount, 5);
+            for (let i = 1; i <= min; i++) {
+                const planet = await fetch(`https://swapi.dev/api/planets/${i}/`)
+                    .then(response => {
+                        if (response.status === 404) {
+                            min++;
+                            return null;
+                        }
+                        return response;
+                    })
+                    .then(response => response.json())
+                    .catch(() => null);
+
+                if (planet) {
+                    const planetDiv = document.createElement('div');
+                    planetDiv.innerHTML = `
+                        <h3>${planet.name}</h3>
+                        <p><strong>Climate:</strong> ${planet.climate}</p>
+                        <p><strong>Population:</strong> ${planet.population}</p>
+                    `;
+                    document.getElementById('planets').appendChild(planetDiv);
+                }
+            }
+        }
+
+        async function fetchStarships() {
+            document.getElementById('starships').innerHTML = '<h2>Starships</h2>';
+            const starshipsCount = await fetch('https://swapi.dev/api/starships/')
+                .then(response => response.json())
+                .then(data => {
+                    return data.count;
+                });
+
+            let min = Math.min(starshipsCount, 5);
+            for (let i = 1; i <= min; i++) {
+                const starship = await fetch(`https://swapi.dev/api/starships/${i}/`)
+                    .then(response => {
+                        if (response.status === 404) {
+                            min++;
+                            return null;
+                        }
+                        return response;
+                    })
+                    .then(response => response.json())
+                    .catch(() => null);
+
+                if (starship) {
+                    const starshipDiv = document.createElement('div');
+                    starshipDiv.innerHTML = `
+                        <h3>${starship.name}</h3>
+                        <p><strong>Model:</strong> ${starship.model}</p>
+                        <p><strong>Manufacturer:</strong> ${starship.manufacturer}</p>
+                    `;
+                    document.getElementById('starships').appendChild(starshipDiv);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

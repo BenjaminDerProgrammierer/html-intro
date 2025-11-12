@@ -1,0 +1,118 @@
+:root {
+    --foreground: #f0f0f0;
+    --background: #333;
+
+    --header-background: #222;
+    --header-foreground: #fff;
+
+    --page-background: #222;
+
+    --footer-background: #444;
+    --footer-foreground: #ccc;
+
+    --button-color: #444;
+    --button-hover-color: #2a2a2a;
+    --button-active-color: #222;
+}
+
+@font-face {
+    font-family: 'Star Jedi SE';
+    src: url('font/stjedise/STJEDISE.TTF') format('truetype');
+}
+
+@font-face {
+    font-family: 'Star Jedi';
+    src: url('font/starjedi/Starjedi.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--header-background);
+    color: var(--header-foreground);
+    padding: 1rem;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Star Jedi', sans-serif;
+}
+
+.container {
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tabs {
+    display: flex;
+    justify-content: start;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0 1rem;
+
+    input[type="radio"] {
+        display: none;
+    }
+
+    label {
+        background-color: var(--button-color);
+        color: var(--header-foreground);
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 5px 5px 0 0;
+
+        transition: transform 0.3s;
+        transform: translateY(5px);
+
+        &:hover {
+            transform: translateY(0);
+        }
+    }
+
+    input[type="radio"]:checked + label {
+        background-color: var(--button-active-color);
+        transform: translateY(0);
+    }
+}
+
+.page {
+    z-index: 1;
+    background-color: var(--page-background);
+    padding: 1rem;
+    border-radius: 5px 5px 0 0;
+    min-height: 400px;
+    width: 100%;
+}
+
+.footer {
+    text-align: center;
+    padding: 1rem;
+    background-color: var(--footer-background);
+    color: var(--footer-foreground);
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+
+    a {
+        color: var(--footer-foreground);
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
