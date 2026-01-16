@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap');
+
+:root {
+    /* https://coolors.co/ffd166-f86624 */
+    --primary-color: #ffd166;
+    --secondary-color: #f86624;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cascadia Code', sans-serif;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    padding: 40px 20px;
+    min-height: 100vh;
+}
+
+header {
+    color: #333;
+    margin-bottom: 40px;
+
+    h1 {
+        font-size: 3rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        opacity: 0.9;
+        margin-bottom: 5px;
+    }
+
+    .smallprint {
+        font-size: 0.5rem;
+        opacity: 0.7;
+    }
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    & > *:not(:last-child) {
+        margin-bottom: 200px;
+    }
+}
+
+.box {
+    background: white;
+    color: #333;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    
+    h2 {
+        color: var(--secondary-color);
+        margin-bottom: 12px;
+        font-size: 1.4em;
+    }
+    
+    p {
+        color: #666;
+        line-height: 1.6;
+        font-size: 0.95em;
+    }
+}
